@@ -11,6 +11,7 @@ function AppLayout() {
   return (
     <div>
       {isLoading && <Loader />}
+
       <Header />
       <main>
         <Outlet />
