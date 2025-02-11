@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 function SearchOrder() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -11,7 +11,7 @@ function SearchOrder() {
     if (!query) return;
 
     navigate(`/order/${query}`);
-    setQuery("");
+    setQuery('');
   }
 
   return (
@@ -20,6 +20,7 @@ function SearchOrder() {
         placeholder="Search order #"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        className="border bg-amber-50 outline-0"
       />
     </form>
   );
