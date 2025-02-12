@@ -1,30 +1,30 @@
-import { Form, redirect, useActionData, useNavigation } from "react-router";
-import { createOrder } from "../../services/apiRestaurant";
+import { Form, redirect, useActionData, useNavigation } from 'react-router';
+import { createOrder } from '../../services/apiRestaurant';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
+    str,
   );
 
 const fakeCart = [
   {
     pizzaId: 12,
-    name: "Mediterranean",
+    name: 'Mediterranean',
     quantity: 2,
     unitPrice: 16,
     totalPrice: 32,
   },
   {
     pizzaId: 6,
-    name: "Vegetale",
+    name: 'Vegetale',
     quantity: 1,
     unitPrice: 13,
     totalPrice: 13,
   },
   {
     pizzaId: 11,
-    name: "Spinach and Mushroom",
+    name: 'Spinach and Mushroom',
     quantity: 1,
     unitPrice: 15,
     totalPrice: 15,
@@ -38,7 +38,7 @@ function CreateOrder() {
 
   const formErrors = useActionData();
 
-  const isSubmitting = navigation.state === "submitting";
+  const isSubmitting = navigation.state === 'submitting';
 
   return (
     <div>
@@ -79,8 +79,11 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting}>
-            {isSubmitting ? "Placing order..." : "Order now"}
+          <button
+            disabled={isSubmitting}
+            className="cursor-pointer rounded-full bg-yellow-400 px-4 py-3 font-semibold tracking-wide text-stone-800 uppercase transition-colors duration-300 ease-in-out hover:bg-yellow-300 focus:ring focus:ring-yellow-300 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? 'Placing order...' : 'Order now'}
           </button>
         </div>
       </Form>
@@ -95,22 +98,22 @@ export async function action({ request }) {
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
-    priority: data.priority === "on",
+    priority: data.priority === 'on',
   };
 
   const errors = {};
   if (!isValidPhone(order.phone)) {
     errors.phone =
-      "Please give us a valid phone number, We might need it to contact you";
+      'Please give us a valid phone number, We might need it to contact you';
   }
 
   if (Object.keys(errors.length > 0)) return errors;
 
   //? If there are no errors, create the order and redirect
 
-  const newOrder = await createOrder(order);
+  // const newOrder = await createOrder(order);
 
-  return redirect(`/order/${newOrder.id}`);
+  // return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
