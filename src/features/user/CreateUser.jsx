@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../../ui/Button';
 import { useDispatch } from 'react-redux';
 import { updateName } from './userSlice';
-import { replace, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 function CreateUser() {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ function CreateUser() {
     dispatch(updateName(username));
     setUsername('');
 
-    navigate('/order/new', replace(true));
+    navigate('/menu');
   }
 
   return (
