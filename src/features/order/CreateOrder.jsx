@@ -162,13 +162,11 @@ export async function action({ request }) {
 
   //? If there are no errors, create the order and redirect
 
-  // const newOrder = await createOrder(order);
+  const newOrder = await createOrder(order);
 
-  // store.dispatch(clearCart());
+  store.dispatch(clearCart());
 
-  // return redirect(`/order/${newOrder.id}`);
-
-  return null;
+  return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
