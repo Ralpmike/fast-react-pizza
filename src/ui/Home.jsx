@@ -4,7 +4,6 @@ import Button from './Button';
 
 function Home() {
   const userName = useSelector((state) => state.user.username);
-  console.log('username', userName);
 
   return (
     <div className="my-10 px-4 text-center sm:my-16">
